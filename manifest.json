@@ -1,0 +1,10 @@
+{
+    "Name": "SharedBookies",
+    "Author": "Wortax",
+    "Version": "1.0.0",
+    "Description": "A mod to share power books effects between players",
+    "UniqueID": "Wortax.SharedBookies",
+    "EntryDll": "SharedBookies.dll",
+    "MinimumApiVersion": "4.0.0",
+    "UpdateKeys": [ "Nexus:44268" ]
+}
