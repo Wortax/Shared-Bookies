@@ -67,7 +67,14 @@ namespace SharedBookies
             "jeWel.MoreBooks_Book_Luck",
             "jeWel.MoreBooks_Book_Immunity",
             "jeWel.MoreBooks_Book_Magnet",
-            "jeWel.MoreBooks_Book_Fishing"
+            "jeWel.MoreBooks_Book_Fishing",
+
+            //JP Merchant Books
+            "JP98_MB_Book_Secret_Sales_Strategies",
+            "JP98_MB_Book_Carpenter_Secrets",
+            "JP98_MB_Book_Persuasion_Techniques",
+            "JP98_MB_Book_Pet_Care_Guide"
+
         };
 
         public override void Entry(IModHelper helper)
@@ -109,20 +116,28 @@ namespace SharedBookies
 
             var data = e.ReadAs<SyncData>();
 
-            int powersAdded = 0;
+            int nbpowersAdded = 0;
 
             foreach (string book in data.PowerBooks)
             {
                 if (Game1.player.stats.Get(book) == 0)
                 {
                     Game1.player.stats.Set(book, 1);
-                    powersAdded++;
+                    nbpowersAdded++;
                 }
             }
+            if (nbpowersAdded == 0)
+                return;
 
-            if (powersAdded > 0)
+            if (nbpowersAdded == 1)
             {
-                Monitor.Log($"[Apply] Added Power Book(s) = {powersAdded}", LogLevel.Info);
+                Monitor.Log($"[Apply] Added Power Book = {nbpowersAdded}", LogLevel.Info);
+                Game1.addHUDMessage(new HUDMessage($"Added one new Power Book"));
+            }
+            else
+            {
+                Monitor.Log($"[Apply] Added Power Books = {nbpowersAdded}", LogLevel.Info);
+                Game1.addHUDMessage(new HUDMessage($"Added {nbpowersAdded} new Power Books"));
             }
         }
 
